@@ -10,10 +10,13 @@ import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Query
 
-interface DictionaryAPI {
+interface DictionaryApi {
 
 
-    @Headers("X-RapidAPI-Host:mashape-community-urban-dictionary.p.rapidapi.com", "X-RapidAPI-Key:9ee2d8a679msh1a307350ccb4f0cp1d10b3jsn46e51c0d4ec2")
+    @Headers(
+        "X-RapidAPI-Host:mashape-community-urban-dictionary.p.rapidapi.com",
+        "X-RapidAPI-Key:9ee2d8a679msh1a307350ccb4f0cp1d10b3jsn46e51c0d4ec2"
+    )
     @GET("define")
 
 
@@ -21,7 +24,7 @@ interface DictionaryAPI {
 
 
     companion object {
-        fun create(): DictionaryAPI {
+        fun create(): DictionaryApi {
             val retrofit = Retrofit.Builder()
                 .addCallAdapterFactory(CoroutineCallAdapterFactory())
                 .baseUrl("https://mashape-community-urban-dictionary.p.rapidapi.com/")
@@ -29,7 +32,7 @@ interface DictionaryAPI {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
 
-            return retrofit.create(DictionaryAPI::class.java)
+            return retrofit.create(DictionaryApi::class.java)
         }
     }
 

@@ -7,13 +7,13 @@ data class ListObject(
     var definition: String,
 
     @SerializedName("thumbs_up")
-    var thumbs_up: Int,
+    var thumbsUp: Int,
 
     @SerializedName("word")
     var word: String,
 
     @SerializedName("thumbs_down")
-    var thumbs_down: Int ,
+    var thumbsDown: Int,
 
     @SerializedName("example")
     var example: String

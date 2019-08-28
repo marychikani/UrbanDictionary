@@ -12,9 +12,9 @@ import chikani.marycarmen.urbandictionary.model.ListObject
 class DictionaryAdapter(var dictionaryList: List<ListObject>) : RecyclerView.Adapter<DictionaryAdapter.ViewHolder>() {
 
 
-    override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
+    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
 
-        val view = LayoutInflater.from(p0.context).inflate(R.layout.info_word, p0,false)
+        val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.info_word, viewGroup, false)
         return ViewHolder(view)
     }
 
@@ -22,22 +22,22 @@ class DictionaryAdapter(var dictionaryList: List<ListObject>) : RecyclerView.Ada
         return dictionaryList.size
     }
 
-    override fun onBindViewHolder(p0: ViewHolder, p1: Int) {
+    override fun onBindViewHolder(viewGroup: ViewHolder, viewType: Int) {
 
-        p0.txt_word.text = dictionaryList[p1].word
-        p0.txt_definition.text = dictionaryList[p1].definition
-        p0.txt_example.text = dictionaryList[p1].example
-        p0.txt_thumbs_up.text = dictionaryList[p1].thumbs_up.toString()
-        p0.txt_thumbs_down.text = dictionaryList[p1].thumbs_down.toString()
+        viewGroup.txtWord.text = dictionaryList[viewType].word
+        viewGroup.txtDefinition.text = dictionaryList[viewType].definition
+        viewGroup.txtExample.text = dictionaryList[viewType].example
+        viewGroup.txtThumbsUp.text = dictionaryList[viewType].thumbsUp.toString()
+        viewGroup.txtThumbsDown.text = dictionaryList[viewType].thumbsDown.toString()
 
     }
 
-    class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        val txt_word = itemView.findViewById<TextView>(R.id.txt_word)
-        val txt_definition = itemView.findViewById<TextView>(R.id.txt_definition)
-        val txt_example = itemView.findViewById<TextView>(R.id.txt_example)
-        val txt_thumbs_up = itemView.findViewById<TextView>(R.id.txt_thumbs_up)
-        val txt_thumbs_down = itemView.findViewById<TextView>(R.id.txt_thumbs_down)
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val txtWord = itemView.findViewById<TextView>(R.id.txtWord)
+        val txtDefinition = itemView.findViewById<TextView>(R.id.txtDefinition)
+        val txtExample = itemView.findViewById<TextView>(R.id.txtExample)
+        val txtThumbsUp = itemView.findViewById<TextView>(R.id.txtThumbsUp)
+        val txtThumbsDown = itemView.findViewById<TextView>(R.id.txtThumbsDown)
 
     }
 

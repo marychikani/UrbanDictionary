@@ -9,19 +9,19 @@
               android:layout_height="match_parent"
               android:text="Word Name"
               android:textColor="@color/colorF"
-              android:id="@+id/txt_word"
+              android:id="@+id/txtWord"
               android:layout_marginBottom="5dp"/>
 
     <TextView android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:text="Definition"
-              android:id="@+id/txt_definition"/>
+              android:id="@+id/txtDefinition"/>
 
     <TextView android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:text="Example"
               android:textColor="@color/colorBackground"
-              android:id="@+id/txt_example"/>
+              android:id="@+id/txtExample"/>
 
 
     <RelativeLayout android:layout_width="match_parent"
@@ -32,31 +32,31 @@
         <ImageView android:layout_width="20dp"
                    android:layout_height="20dp"
                    android:layout_marginRight="5dp"
-                   android:layout_toLeftOf="@+id/txt_thumbs_up"
+                   android:layout_toLeftOf="@+id/txtThumbsUp"
                    android:background="@drawable/thumbup"
-                   android:id="@+id/thumbs_up"/>
+                   android:id="@+id/thumbsUp"/>
 
         <TextView android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:text="500"
                   android:layout_marginRight="5dp"
-                  android:layout_toLeftOf="@+id/thumbs_down"
-                  android:layout_alignLeft="@id/txt_thumbs_up"
-                  android:id="@+id/txt_thumbs_up"/>
+                  android:layout_toLeftOf="@+id/thumbsDown"
+                  android:layout_alignLeft="@id/txtThumbsUp"
+                  android:id="@+id/txtThumbsUp"/>
 
         <ImageView android:layout_width="20dp"
                    android:layout_height="20dp"
                    android:layout_marginRight="5dp"
-                   android:layout_toLeftOf="@+id/txt_thumbs_down"
+                   android:layout_toLeftOf="@+id/txtThumbsDown"
                    android:background="@drawable/thumbdown"
-                   android:id="@+id/thumbs_down"/>
+                   android:id="@+id/thumbsDown"/>
 
 
         <TextView android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:layout_alignParentRight="true"
                   android:text="0"
-                  android:id="@+id/txt_thumbs_down"/>
+                  android:id="@+id/txtThumbsDown"/>
 
     </RelativeLayout>
 

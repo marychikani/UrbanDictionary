@@ -13,7 +13,7 @@ import kotlin.coroutines.CoroutineContext
 
 class MainActivityViewModel() : ViewModel(), CoroutineScope {
 
-    var listDefinition = MutableLiveData<Definition>()
+    private val listDefinition = MutableLiveData<Definition>()
     private val service = RepoDictionaryDataSource
 
     private val job = Job()
@@ -29,13 +29,13 @@ class MainActivityViewModel() : ViewModel(), CoroutineScope {
 
                 val definitionDataSource = service.newInstance()
 
-                withContext(Dispatchers.IO){
+                withContext(Dispatchers.IO) {
                     try {
                         val result = definitionDataSource.getDefinitions(term)
                         if (result is Result.Success) {
                             listDefinition.postValue(result.data)
 
-                        }else{
+                        } else {
 
                             Log.i("E:", "Result.Error")
 
@@ -49,8 +49,8 @@ class MainActivityViewModel() : ViewModel(), CoroutineScope {
                 }
 
 
-            }catch (e: Exception){
-                delay(3000)
+            } catch (e: Exception) {
+                Log.i("EPC:", "Result.Error")
             }
 
 
@@ -59,7 +59,7 @@ class MainActivityViewModel() : ViewModel(), CoroutineScope {
 
     }
 
-    fun getDefinitions():MutableLiveData<Definition>{
+    fun getDefinitions(): MutableLiveData<Definition> {
         return listDefinition
     }
 
@@ -70,30 +70,26 @@ class MainActivityViewModel() : ViewModel(), CoroutineScope {
     }
 
 
-    fun sortData(ascending: Boolean){
+    fun sortData(ascending: Boolean) {
 
         launch {
 
-            withContext(Dispatchers.IO){
-                    try{
-                        if(ascending){
-                            var ss =listDefinition.value?.list?.sortedByDescending{
-                                    definition -> definition.thumbs_up }
+            withContext(Dispatchers.IO) {
+                try {
 
-                            listDefinition.value?.list = ss!!
-                            listDefinition.postValue(listDefinition.value)
-                        }else{
+                    val ss = listDefinition.value?.list?.sortedByDescending { definition ->
+                        if (ascending) definition.thumbsUp else definition.thumbsDown
+                    }.orEmpty()
 
-                            var ss =listDefinition.value?.list?.sortedByDescending{
-                                    definition -> definition.thumbs_down }
 
-                            listDefinition.value?.list = ss!!
-                            listDefinition.postValue(listDefinition.value)
+                    listDefinition.value?.list = ss
+                    listDefinition.postValue(listDefinition.value)
 
-                        }
-                    }catch(e: Exception){
-                        delay(3000)
-                    }
+                } catch (e: Exception) {
+
+                    Log.i("EPCS:", "Result.Error")
+                }
+
 
             }
         }

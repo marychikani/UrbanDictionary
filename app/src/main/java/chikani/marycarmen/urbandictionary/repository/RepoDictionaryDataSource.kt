@@ -1,27 +1,27 @@
 package chikani.marycarmen.urbandictionary.repository
 
 import chikani.marycarmen.urbandictionary.api.DataSourceException
-import chikani.marycarmen.urbandictionary.api.DictionaryAPI
+import chikani.marycarmen.urbandictionary.api.DictionaryApi
 import chikani.marycarmen.urbandictionary.model.Definition
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 
-class RepoDictionaryDataSource (val apiService: DictionaryAPI) {
+class RepoDictionaryDataSource(val apiService: DictionaryApi) {
 
 
-     suspend fun getDefinitions(term: String): Result<Definition> = withContext(Dispatchers.IO) {
+    suspend fun getDefinitions(term: String): Result<Definition> = withContext(Dispatchers.IO) {
 
-         //get data from apiService, passing term
+        //get data from apiService, passing term
         val request = apiService.getCurrentWordData(term).await()
 
         try {
             val response = request
             //return definition object
             Result.Success(response)
-        }catch (ex: HttpException) {
+        } catch (ex: HttpException) {
             Result.Error(DataSourceException.RemoteDataNotFoundException())
-        }catch (ex: Throwable) {
+        } catch (ex: Throwable) {
             Result.Error(DataSourceException.RemoteDataNotFoundException())
         }
 
@@ -31,7 +31,7 @@ class RepoDictionaryDataSource (val apiService: DictionaryAPI) {
     companion object {
         //Create instance of Repository API
         fun newInstance() =
-            RepoDictionaryDataSource(DictionaryAPI.create())
+            RepoDictionaryDataSource(DictionaryApi.create())
     }
 
 
